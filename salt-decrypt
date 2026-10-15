@@ -1,0 +1,4 @@
+#!/bin/bash
+openssl enc -aes-256-cbc -iter 23 -salt -d -in $1 -out $2 -pass file:./$3
+
+
