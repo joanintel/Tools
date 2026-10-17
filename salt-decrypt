@@ -1,4 +1,14 @@
 #!/bin/bash
-openssl enc -aes-256-cbc -iter 23 -salt -d -in $1 -out $2 -pass file:./$3
+
+# Decrypts a file encrypted with AES-256-CBC (PBKDF2, 600k iterations, salted).
+# Usage: ./decrypt.sh <encrypted_file> <output_file> <passphrase_file>
+# Must use the same -iter value that was used to encrypt (files from the old script need -iter 23).
+
+
+#old one
+#penssl enc -aes-256-cbc -iter 23 -salt -d -in $1 -out $2 -pass file:./$3
+
+
+openssl enc -d -aes-256-cbc -pbkdf2 -iter 600000 -salt -in "$1" -out "$2" -pass file:"$3"
 
 
